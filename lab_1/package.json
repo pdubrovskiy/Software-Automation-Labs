@@ -4,13 +4,9 @@
   "description": "Laboratory 1",
   "main": "index.js",
   "scripts": {
-    "start:level_1": "ts-node level_1/index.ts",
     "test:level_1": "jest level_1/index.test.ts",
-    "start:level_2": "ts-node level_2/index.ts",
     "test:level_2": "jest level_2/index.test.ts",
-    "start:level_3": "ts-node level_3/index.ts",
     "test:level_3": "jest level_3/index.test.ts",
-    "start:level_4": "ts-node level_4/index.ts",
     "test:level_4": "jest level_4/index.test.ts"
   },
   "devDependencies": {
