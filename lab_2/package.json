@@ -1,0 +1,36 @@
+{
+  "name": "lab_2",
+  "version": "1.0.0",
+  "description": "Selenium WebDriver tests for The Internet website",
+  "main": "index.js",
+  "scripts": {
+    "test:level_1": "jest level_1",
+    "test:level_1:basic-auth": "jest level_1/tests/basic_auth",
+    "test:level_1:dropdown": "jest level_1/tests/dropdown",
+    "test:level_1:dynamic-controls": "jest level_1/tests/dynamic_controls",
+    "test:level_1:exit-intent": "jest level_1/tests/exit_intent",
+    "test:level_1:form-auth": "jest level_1/tests/form_auth",
+    "test:level_1:frames": "jest level_1/tests/frames",
+    "test:level_1:jquery-menu": "jest level_1/tests/jquery_menu",
+    "test:level_1:js-alerts": "jest level_1/tests/js_alerts",
+    "test:level_1:multiple-windows": "jest level_1/tests/multiple_windows"
+  },
+  "keywords": [
+    "selenium",
+    "webdriver",
+    "testing",
+    "automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "@types/selenium-webdriver": "^4.1.21",
+    "chromedriver": "^132.0.0",
+    "jest": "^29.7.0",
+    "selenium-webdriver": "^4.18.1",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
