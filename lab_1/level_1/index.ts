@@ -102,20 +102,3 @@ export class Fraction {
     }
   }
 }
-
-// Example usage with array
-const fractions: Array<Fraction> = [
-  new Fraction(1, 2),
-  new Fraction(1, 3),
-  new Fraction(1, 4),
-  new Fraction(1, 5),
-  new Fraction(1, 6),
-];
-
-console.log("Original array:");
-fractions.forEach((f) => console.log(f.toString()));
-
-Fraction.modifyEvenIndexedElements(fractions);
-
-console.log("\nArray after modification:");
-fractions.forEach((f) => console.log(f.toString()));
