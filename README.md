@@ -1,6 +1,6 @@
 # Software-Automation-Labs ⚡️
 
-A comprehensive collection of software testing labs, featuring both Unit Testing (Lab 1) and End-to-End Testing (Lab 2) implementations using TypeScript.
+A collection of software testing labs, featuring both Unit Testing (Lab 1) and End-to-End Testing (Lab 2) implementations using TypeScript.
 
 ## 🌟 Overview
 
