@@ -13,7 +13,8 @@
     "test:level_1:frames": "jest level_1/tests/frames",
     "test:level_1:jquery-menu": "jest level_1/tests/jquery_menu",
     "test:level_1:js-alerts": "jest level_1/tests/js_alerts",
-    "test:level_1:multiple-windows": "jest level_1/tests/multiple_windows"
+    "test:level_1:multiple-windows": "jest level_1/tests/multiple_windows",
+    "test:level_2": "jest level_2/tests/registration"
   },
   "keywords": [
     "selenium",
