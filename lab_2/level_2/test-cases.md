@@ -1,6 +1,6 @@
 # ShareLane Website Test Cases
 
-## Registration Flow
+## Registration Flow Tests (Implemented)
 
 ### TC001: Successful User Registration (Positive)
 - **Precondition**: User is on the registration page
@@ -8,130 +8,128 @@
   1. Enter valid ZIP code (5 digits)
   2. Click 'Continue'
   3. Fill in all required fields with valid data:
+     - First name: "test"
+     - Last name: "test"
+     - Email: "test@test.test"
+     - Password: "12345"
+     - Confirm password: "12345"
+  4. Click 'Register'
+- **Expected Result**: User is successfully registered and confirmation message is displayed
+- **Implementation**: `testValidRegistration()`
+
+### TC002: Empty ZIP Code Validation (Negative)
+- **Precondition**: User is on the registration page
+- **Steps**:
+  1. Leave ZIP code field empty
+  2. Click 'Continue'
+- **Expected Result**: Error message "Oops, error on page. ZIP code should have 5 digits"
+- **Implementation**: `testEmptyZipCode()`
+
+### TC003: Invalid ZIP Code - Too Long (Negative)
+- **Precondition**: User is on the registration page
+- **Steps**:
+  1. Enter "123456" (6 digits) in ZIP code field
+  2. Click 'Continue'
+- **Expected Result**: Error message about invalid ZIP code format
+- **Implementation**: `testInvalidZipCode()`
+
+### TC004: Valid ZIP Code Navigation (Positive)
+- **Precondition**: User is on the registration page
+- **Steps**:
+  1. Enter "12345" in ZIP code field
+  2. Click 'Continue'
+- **Expected Result**: User is redirected to registration form page
+- **Implementation**: `testValidZipCode()`
+
+### TC005: Empty Registration Form Submission (Negative)
+- **Precondition**: User is on the registration form (ZIP code validated)
+- **Steps**:
+  1. Leave all fields empty
+  2. Click 'Register'
+- **Expected Result**: Error message "Oops, error on page. Some of your fields have invalid data or email was previously used"
+- **Implementation**: `testEmptyRegistration()`
+
+### TC006: Invalid Email Format (Negative)
+- **Precondition**: User is on the registration form (ZIP code validated)
+- **Steps**:
+  1. Fill all fields with valid data
+  2. Enter invalid email "testtest.test" (without @)
+  3. Click 'Register'
+- **Expected Result**: Error message "Email address is not valid"
+- **Implementation**: `testInvalidEmailFormat()`
+
+### TC007: Missing First Name (Negative)
+- **Precondition**: User is on the registration form (ZIP code validated)
+- **Steps**:
+  1. Fill all fields except first name
+  2. Leave first name empty
+  3. Click 'Register'
+- **Expected Result**: Error message "First name is required"
+- **Implementation**: `testRegistrationForm()` with test data index 2
+
+### TC008: Password Mismatch (Negative)
+- **Precondition**: User is on the registration form (ZIP code validated)
+- **Steps**:
+  1. Fill all fields with valid data
+  2. Enter "pass123" in password field
+  3. Enter "pass124" in confirm password field
+  4. Click 'Register'
+- **Expected Result**: Error message "Passwords don't match"
+- **Implementation**: `testRegistrationForm()` with test data index 4
+
+### TC009: Invalid ZIP Code - Too Short (Negative)
+- **Precondition**: User is on the registration page
+- **Steps**:
+  1. Enter "1234" (4 digits) in ZIP code field
+  2. Click 'Continue'
+- **Expected Result**: Error message "Oops, error on page. ZIP code should have 5 digits"
+- **Implementation**: `testRegistrationForm()` with test data index 1
+
+### TC010: Complete Valid Registration Flow (Positive)
+- **Precondition**: User is on the registration page
+- **Steps**:
+  1. Enter valid ZIP code "12345"
+  2. Click 'Continue'
+  3. Fill in registration form:
      - First name: "John"
      - Last name: "Doe"
      - Email: "john.doe@example.com"
      - Password: "password123"
      - Confirm password: "password123"
   4. Click 'Register'
-- **Expected Result**: User is successfully registered and redirected to confirmation page
+- **Expected Result**: Account is successfully created with confirmation message
+- **Implementation**: `testRegistrationForm()` with test data index 0
 
-### TC002: ZIP Code Validation - Data Driven (Negative)
-- **Precondition**: User is on the registration page
-- **Test Data**:
-  - "1234" (4 digits)
-  - "123456" (6 digits)
-  - "abcde" (letters)
-  - "12.34" (special characters)
-  - "" (empty)
-- **Steps**:
-  1. Enter test data in ZIP code field
-  2. Click 'Continue'
-- **Expected Result**: Error message displayed for invalid ZIP code format
+## Test Implementation Details
 
-### TC003: Password Mismatch (Negative)
-- **Precondition**: User is on the registration form
-- **Steps**:
-  1. Enter valid ZIP code
-  2. Fill in all fields with valid data except:
-     - Password: "password123"
-     - Confirm password: "password124"
-  3. Click 'Register'
-- **Expected Result**: Error message about password mismatch
+### Test Setup
+- Each test starts with a clean browser session
+- Navigation to registration page is handled in `setupTest()`
+- Tests use explicit waits for element visibility
+- Error messages are validated for exact text matches
+- Success cases verify confirmation message presence
 
-### TC004: Email Format Validation (Data Driven)
-- **Precondition**: User is on the registration form
-- **Test Data**:
-  - "test@example.com" (valid)
-  - "test.example.com" (no @)
-  - "@example.com" (no local part)
-  - "test@" (no domain)
-  - "test@@example.com" (multiple @)
-- **Steps**:
-  1. Complete registration form with test email
-  2. Click 'Register'
-- **Expected Result**: Accept valid email, reject invalid formats
+### Error Handling
+- Comprehensive error message checking across multiple possible selectors
+- Explicit waits for page transitions and element visibility
+- Clear error messages for test failures
+- Proper cleanup in tearDown
 
-## Shopping Flow
+### Data Driven Testing
+- Uses Jest's `it.each` for multiple test scenarios
+- Structured test data in `RegistrationData` interface
+- Reusable test methods for common functionality
 
-### TC005: Add Book to Cart (Positive)
-- **Precondition**: User is logged in
-- **Steps**:
-  1. Navigate to book listing
-  2. Click on a book title
-  3. Enter quantity: 1
-  4. Click 'Add to Cart'
-- **Expected Result**: Book successfully added to cart
+## Future Test Cases (Not Implemented)
 
-### TC006: Quantity Validation (Data Driven)
-- **Precondition**: User is on book details page
-- **Test Data**:
-  - "0" (zero)
-  - "-1" (negative)
-  - "999999" (very large)
-  - "abc" (non-numeric)
-  - "" (empty)
-- **Steps**:
-  1. Enter test quantity
-  2. Click 'Add to Cart'
-- **Expected Result**: Only accept valid positive integers
+### Shopping Flow
+- Add to cart functionality
+- Quantity validation
+- Search functionality
+- Cart calculations
+- Checkout process
 
-### TC007: Search Functionality (Positive)
-- **Precondition**: User is on main page
-- **Steps**:
-  1. Enter valid book title in search field
-  2. Click 'Search'
-- **Expected Result**: Relevant search results displayed
-
-### TC008: Shopping Cart Total Calculation
-- **Precondition**: User has empty cart
-- **Steps**:
-  1. Add multiple books with different quantities
-  2. Verify total calculation
-  3. Update quantities
-  4. Verify updated total
-- **Expected Result**: Cart total correctly reflects items and quantities
-
-### TC009: Checkout Process (Positive)
-- **Precondition**: User is logged in with items in cart
-- **Steps**:
-  1. Go to shopping cart
-  2. Click 'Proceed to Checkout'
-  3. Fill in shipping information
-  4. Confirm order
-- **Expected Result**: Order successfully placed
-
-### TC010: Login Authentication (Data Driven)
-- **Precondition**: User is on login page
-- **Test Data Combinations**:
-  1. Valid email/Valid password
-  2. Valid email/Invalid password
-  3. Invalid email/Valid password
-  4. Empty email/Empty password
-- **Steps**:
-  1. Enter email and password
-  2. Click 'Login'
-- **Expected Result**: Only valid credentials allow access
-
-### TC011: Session Management
-- **Precondition**: User is logged in
-- **Steps**:
-  1. Perform actions (add to cart, update profile)
-  2. Leave site idle for 30 minutes
-  3. Attempt to perform authenticated action
-- **Expected Result**: Session expires after timeout
-
-### TC012: Cross-browser Compatibility
-- **Precondition**: Test environment setup
-- **Test Browsers**:
-  - Chrome
-  - Firefox
-  - Safari
-  - Edge
-- **Steps**:
-  1. Execute core functions on each browser:
-     - Registration
-     - Login
-     - Search
-     - Cart operations
-- **Expected Result**: Consistent behavior across browsers
+### Authentication
+- Login functionality
+- Session management
+- Cross-browser compatibility
