@@ -1,4 +1,4 @@
-# Software-Automation-Labs 🚀
+# Software-Automation-Labs ⚡️
 
 A comprehensive collection of software testing labs, featuring both Unit Testing (Lab 1) and End-to-End Testing (Lab 2) implementations using TypeScript.
 
@@ -127,15 +127,3 @@ npm run test:level_1:multiple-windows
 # Level 2 - ShareLane Website Tests
 npm run test:level_2
 ```
-
-## 🤝 Contributing
-
-Feel free to contribute to this project by:
-1. Forking the repository
-2. Creating a new branch
-3. Making your changes
-4. Submitting a pull request
-
-## 📝 License
-
-This project is licensed under the ISC License.
